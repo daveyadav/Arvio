@@ -28,6 +28,17 @@
     --amber:#E8A23A;
     --radius:3px;
     --shadow:0 24px 60px -24px rgba(12,18,32,0.24);
+
+    /* ============================================================
+       EDITABLE IMAGE — HERO BACKGROUND
+       To change the hero photo, replace ONLY the URL inside url('...')
+       below. Needs to be a real, direct link to a full-size image
+       (ends in .jpg/.png/.webp, or an Unsplash/CDN URL) — not a
+       Google Images search-result / gstatic thumbnail link, which
+       are tiny cached previews that break or look blurry when used
+       this way.
+       ============================================================ */
+    --hero-bg-image: url('https://images.unsplash.com/photo-1513059260653-32fd11ccc184?w=2400&q=80&auto=format&fit=crop');
   }
   *,*::before,*::after{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -135,7 +146,7 @@
   .hero{ position:relative; min-height:100vh; display:flex; align-items:flex-end; overflow:hidden; background:var(--navy); }
   .hero-bg{
     position:absolute; inset:0;
-    background-image:url('https://images.unsplash.com/photo-1513059260653-32fd11ccc184?w=2400&q=80&auto=format&fit=crop');
+    background-image:var(--hero-bg-image);
     background-size:cover; background-position:center 42%;
     transform:scale(1.06); animation:heroZoom 22s ease-out forwards;
     filter:saturate(0.85);
@@ -345,6 +356,24 @@
 </head>
 <body>
 
+<!-- ============================================================
+     IMAGE SWAP GUIDE
+     Every photo on this page lives in one of these spots. To change
+     one, replace the URL right after src=" (or, for the hero, edit
+     --hero-bg-image up in the <style> :root block).
+     Use a real direct image link — not a Google Images / gstatic
+     "encrypted-tbn" thumbnail link, which is a tiny, temporary cache
+     preview and will look broken or blurry when used full-size.
+
+       1. Hero background          → --hero-bg-image (in :root, top of <style>)
+       2. Craft section photo      → search "craft-img reveal" below
+       3. Projects — Aster Commons → search "Angular concrete commercial building"
+       4. Projects — Meridian      → search "Illuminated concrete house at night"
+       5. Projects — Site 14       → search "Building under construction with crane"
+       6. Projects — Crestline     → search "White and brown concrete residence"
+       7. Projects — Oakview       → search "Two storey residence with balconies"
+     ============================================================ -->
+
 <header id="siteHeader">
   <div class="nav">
     <a href="#top" class="logo"><span class="mark"></span>ARVIO BUILDERS</a>
@@ -533,7 +562,7 @@
   <section class="craft" id="craft">
     <div class="wrap">
       <div class="craft-img reveal">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkRG_yq-c3fY4s7QA72zjBRbw2xf9jJD9E7lB4xrf5aw&s=10?w=1000&q=80&auto=format&fit=crop" alt="Construction crew pouring concrete on site">
+        <img src="https://images.unsplash.com/photo-1774931363306-5a896cd4dd02?w=1000&q=80&auto=format&fit=crop" alt="Construction crew pouring concrete on site">
         <span class="frame-tag">Foundation pour — Site 14</span>
       </div>
       <div class="craft-copy reveal">
