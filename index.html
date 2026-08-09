@@ -51,8 +51,8 @@
     color:var(--blue); font-weight:500; display:inline-flex; align-items:center; gap:9px;
   }
   .eyebrow::before{content:''; width:16px; height:1px; background:var(--blue);}
-  .eyebrow.on-navy{color:var(--blue-light);}
-  .eyebrow.on-navy::before{background:var(--blue-light);}
+  .eyebrow.on-navy{color:#8FB4FF;}
+  .eyebrow.on-navy::before{background:#8FB4FF;}
 
   .wrap{ max-width:1240px; margin:0 auto; padding:0 40px; }
   .accent{ color:var(--blue); }
@@ -151,11 +151,11 @@
   .hero .wrap{ position:relative; z-index:2; width:100%; padding-top:168px; padding-bottom:90px; }
   .hero-head{ max-width:800px; }
   .hero-head h1{ font-size:clamp(46px,7.2vw,94px); color:#fff; margin-top:20px; text-shadow:0 2px 30px rgba(0,0,0,0.3); }
-  .hero-head p{ max-width:470px; margin-top:24px; color:#C7CCD8; font-size:16.5px; }
+  .hero-head p{ max-width:470px; margin-top:24px; color:#E3E7F0; font-size:16.5px; }
   .hero-cta-row{ display:flex; align-items:center; gap:26px; flex-wrap:wrap; margin-top:38px; }
   .scroll-cue{
     display:flex; align-items:center; gap:12px; margin-top:60px;
-    font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:#8B92A3;
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:#A9AFC0;
   }
   .scroll-cue .stem{ width:1px; height:32px; background:rgba(255,255,255,0.18); position:relative; overflow:hidden; }
   .scroll-cue .stem::after{ content:''; position:absolute; top:-100%; left:0; width:100%; height:100%; background:var(--blue-light); animation:stem 1.9s ease-in-out infinite; }
@@ -349,6 +349,7 @@
   <div class="nav">
     <a href="#top" class="logo"><span class="mark"></span>ARVIO BUILDERS</a>
     <nav class="nav-links" id="navLinksDesktop">
+      <a href="#top">Home</a>
       <a href="#process">Process</a>
       <a href="#services">Services</a>
       <a href="#projects">Projects</a>
@@ -365,6 +366,7 @@
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
+  <a href="#top">Home</a>
   <a href="#process">Process</a>
   <a href="#services">Services</a>
   <a href="#projects">Projects</a>
@@ -373,16 +375,16 @@
   <a href="#contact" class="mm-cta">Start a Project →</a>
 </div>
 
-<main id="top">
+<main>
 
   <!-- ============ HERO ============ -->
-  <section class="hero">
+  <section class="hero" id="top">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="wrap">
       <div class="hero-head reveal">
         <div class="eyebrow on-navy">General Contractors — Est. 2010 — Lalitpur, Nepal</div>
-        <h1>We build<br>what <span class="accent" style="color:#7C9BEF;">lasts.</span></h1>
+        <h1>We build<br>what <span class="accent" style="color:#9DBFFF;">lasts.</span></h1>
         <p>Arvio Builders plans, engineers, and constructs residential and commercial buildings across Nepal — from the first site survey to the day we hand you the keys.</p>
         <div class="hero-cta-row">
           <a href="#contact" class="btn">Start a Project</a>
@@ -678,7 +680,7 @@
   onScroll();
 
   // active nav link highlighting
-  const sections = ['process','services','projects','craft','contact'].map(id=>document.getElementById(id));
+  const sections = ['top','process','services','projects','craft','contact'].map(id=>document.getElementById(id));
   const navAnchors = document.querySelectorAll('#navLinksDesktop a');
   const navIo = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
