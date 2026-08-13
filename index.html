@@ -114,7 +114,27 @@
      you have a real logo, replace BOTH <svg class="logo-mark">...
      </svg> blocks below (header + footer) with:
        <img src="Images/your-logo.svg" alt="Arvio Builders" class="logo-img">
+  
      ============================================================ */
+  .logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo img {
+  height: 48px;       /* controls the logo's size */
+  width: auto;         /* keeps the image's aspect ratio intact */
+  max-width: 200px;    /* prevents it from stretching too wide */
+  display: block;
+}
+
+/* Slightly smaller on mobile so it doesn't crowd the header */
+@media (max-width: 600px) {
+  .logo img {
+    height: 36px;
+  }
+}
   .logo-mark{ height:34px; width:auto; flex-shrink:0; display:block; }
   .logo-img{ height:34px; width:auto; display:block; flex-shrink:0; }
   .nav-links{ display:flex; align-items:center; gap:36px; font-size:13.5px; font-weight:500; }
