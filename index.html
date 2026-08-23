@@ -101,35 +101,66 @@
   .link-arrow:hover{ border-color:var(--ink); }
   .on-navy .link-arrow{ color:#fff; border-color:var(--line-on-navy); }
 
-  /* ================= NAV ================= */
+  /* ================= NAV — theme-adaptive header ================= */
+  /*
+    The header reads what's directly behind it (see the "adaptive header"
+    script near the end of the file) and sets one of two theme classes:
+      header.theme-dark   → sitting over a dark/navy section → light text + white-ink logo
+      header.theme-light  → sitting over a light/paper section → dark text + black-ink logo
+    Independently, header.is-scrolled toggles the frosted glass panel on/off
+    (off = fully transparent, right at the top of the hero).
+    Everything below reads the --header-fg variable, so text/icons/bars
+    never need separate light/dark rule sets.
+  */
   header{
     position:fixed; top:0; left:0; right:0; z-index:200;
     background:transparent; border-bottom:1px solid transparent;
-    transition:background .35s ease, border-color .35s ease, backdrop-filter .35s ease;
+    transition:background .4s ease, border-color .4s ease, backdrop-filter .4s ease, box-shadow .4s ease;
     padding:4px 0;
+    --header-fg:#fff;
+    --header-fg-soft:rgba(255,255,255,0.85);
   }
-  header.is-scrolled{
-    background:rgba(12,18,32,0.42);
+  header.theme-light{
+    --header-fg:var(--ink);
+    --header-fg-soft:rgba(18,20,26,0.72);
+  }
+  header.is-scrolled.theme-dark{
+    background:rgba(12,18,32,0.44);
     backdrop-filter:blur(18px) saturate(160%);
     -webkit-backdrop-filter:blur(18px) saturate(160%);
     border-bottom:1px solid rgba(255,255,255,0.10);
     box-shadow:0 12px 40px -20px rgba(12,18,32,0.35);
   }
-  .nav{ display:flex; align-items:center; justify-content:space-between; padding:12px 40px; max-width:1280px; margin:0 auto; }
-  .logo{
-    display:flex; align-items:center; color:#fff; transition:color .3s ease, transform .25s ease;
+  header.is-scrolled.theme-light{
+    background:rgba(250,250,248,0.68);
+    backdrop-filter:blur(18px) saturate(160%);
+    -webkit-backdrop-filter:blur(18px) saturate(160%);
+    border-bottom:1px solid rgba(18,20,26,0.08);
+    box-shadow:0 12px 40px -20px rgba(18,20,26,0.14);
   }
-  .logo:hover{ transform:scale(1.06); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:12px 40px; max-width:1280px; margin:0 auto; }
+
   /* ============================================================
      EDITABLE IMAGE — LOGO
-     Replace the src on the two <img class="logo-img"> tags (header +
-     footer) with your real logo file path once you have one.
+     Two transparent PNGs are cross-faded automatically by the header
+     script — no need to touch this manually. To swap the artwork,
+     replace Images/arvio-logo-dark-mode.png (white ink, used when the
+     header floats over dark sections) and/or
+     Images/arvio-logo-light-mode.png (black ink, used over light
+     sections) with your own files of the same names.
      ============================================================ */
+  .logo{ position:relative; display:block; height:60px; width:170px; transition:transform .25s ease; }
+  .logo:hover{ transform:scale(1.06); }
   .logo-mark{ height:30px; width:auto; flex-shrink:0; display:block; }
-  .logo img{ height:60px; width:auto; max-width:170px; display:block; flex-shrink:0; }
+  .logo-img{
+    position:absolute; left:0; top:0; height:60px; width:auto; max-width:170px; display:block;
+    opacity:0; transition:opacity .4s ease;
+  }
+  .logo-img.is-active{ opacity:1; }
+  .foot-brand .logo img{ height:60px; width:auto; max-width:170px; display:block; }
+
   .nav-links{ display:flex; align-items:center; gap:36px; font-size:13.5px; font-weight:500; }
-  .nav-links a{ position:relative; padding:6px 0; color:#fff; opacity:0.9; transition:opacity .2s; }
-  header.is-scrolled .nav-links a{ opacity:0.88; }
+  .nav-links a{ position:relative; padding:6px 0; color:var(--header-fg); opacity:0.92; transition:opacity .2s, color .4s ease; }
   .nav-links a::after{ content:''; position:absolute; left:0; bottom:0; width:0; height:2px; background:var(--blue); transition:width .25s ease; }
   .nav-links a:hover{ opacity:1; } .nav-links a:hover::after{ width:100%; }
   .nav-links a.active::after{ width:100%; }
@@ -142,7 +173,7 @@
   .nav-cta:hover{ background:var(--blue-deep); transform:translateY(-1px); }
 
   .nav-toggle{ display:none; flex-direction:column; justify-content:center; gap:4px; width:24px; height:24px; background:none; border:none; cursor:pointer; padding:0; z-index:210; }
-  .nav-toggle .bar{ width:100%; height:1.3px; background:#fff; transition:background .3s, transform .3s, opacity .3s; }
+  .nav-toggle .bar{ width:100%; height:1.3px; background:var(--header-fg); transition:background .4s ease, transform .3s, opacity .3s; }
   .nav-toggle.open .bar:nth-child(1){ transform:translateY(5.3px) rotate(45deg); }
   .nav-toggle.open .bar:nth-child(2){ opacity:0; }
   .nav-toggle.open .bar:nth-child(3){ transform:translateY(-5.3px) rotate(-45deg); }
@@ -162,10 +193,9 @@
 
   /* ================= SOCIAL ================= */
   .nav-social{ display:flex; align-items:center; gap:16px; margin-right:8px; }
-  .nav-social a{ display:flex; color:#fff; opacity:0.85; transition:opacity .2s ease, color .2s ease; }
+  .nav-social a{ display:flex; color:var(--header-fg); opacity:0.85; transition:opacity .2s ease, color .4s ease; }
   .nav-social a:hover{ opacity:1; color:var(--blue-light); }
   .nav-social svg{ width:17px; height:17px; }
-  header.is-scrolled .nav-social a{ opacity:0.85; }
   @media (max-width:980px){ .nav-social{ display:none; } }
 
   .mobile-social{ display:flex; gap:22px; margin-top:26px; }
@@ -434,10 +464,11 @@
           → search "logo-img" below (header + footer)
      ============================================================ -->
 
-<header id="siteHeader">
+<header id="siteHeader" class="theme-dark">
   <div class="nav">
     <a href="#top" class="logo" aria-label="Arvio Builders — Home">
-      <img src="Images/arvio-logo-dark-mode.png" alt="Arvio Builders" class="logo-img">
+      <img src="Images/arvio-logo-dark-mode.png" alt="Arvio Builders" class="logo-img logo-for-dark is-active">
+      <img src="Images/arvio-logo-light-mode.png" alt="Arvio Builders" class="logo-img logo-for-light">
     </a>
     <nav class="nav-links" id="navLinksDesktop">
       <a href="#top">Home</a>
@@ -497,7 +528,7 @@
 <main>
 
   <!-- ============ HERO ============ -->
-  <section class="hero" id="top">
+  <section class="hero" id="top" data-theme="dark">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="wrap">
@@ -515,7 +546,7 @@
   </section>
 
   <!-- ============ STATS ============ -->
-  <section class="stats" style="padding:0;">
+  <section class="stats" style="padding:0;" data-theme="dark">
     <div class="wrap">
       <div class="stat reveal"><div class="num" data-target="15" data-suffix="">0</div><div class="lbl">Years Building</div></div>
       <div class="stat reveal"><div class="num" data-target="142" data-suffix="">0</div><div class="lbl">Projects Delivered</div></div>
@@ -525,7 +556,7 @@
   </section>
 
   <!-- ============ PHILOSOPHY ============ -->
-  <section class="philosophy">
+  <section class="philosophy" data-theme="dark">
     <div class="wrap">
       <div class="eyebrow on-navy reveal">Our Philosophy</div>
       <blockquote class="reveal" style="margin-top:22px;">
@@ -536,7 +567,7 @@
   </section>
 
   <!-- ============ SERVICES ============ -->
-  <section class="services" id="services" style="padding:100px 0;">
+  <section class="services" id="services" style="padding:100px 0;" data-theme="light">
     <div class="wrap">
       <div class="sec-head reveal">
         <div><div class="eyebrow">What We Build</div><h2>Services</h2></div>
@@ -590,7 +621,7 @@
   </section>
 
   <!-- ============ PROCESS ============ -->
-  <section class="process" id="process">
+  <section class="process" id="process" data-theme="light">
     <div class="wrap">
       <div class="sec-head reveal">
         <div><div class="eyebrow">How We Build</div><h2>The Arvio<br>Process</h2></div>
@@ -632,7 +663,7 @@
   </section>
 
   <!-- ============ PROJECTS ============ -->
-  <section class="projects" id="projects">
+  <section class="projects" id="projects" data-theme="light">
     <div class="wrap">
       <div class="sec-head reveal">
         <div><div class="eyebrow">Selected Work</div><h2>Projects</h2></div>
@@ -674,7 +705,7 @@
   </section>
 
   <!-- ============ CRAFT ============ -->
-  <section class="craft" id="craft">
+  <section class="craft" id="craft" data-theme="light">
     <div class="wrap">
       <div class="craft-img reveal">
         <!-- Upload your video into the Images folder and point src at it.
@@ -699,7 +730,7 @@
   </section>
 
   <!-- ============ TESTIMONIALS ============ -->
-  <section class="testimonials">
+  <section class="testimonials" data-theme="light">
     <div class="wrap">
       <div class="sec-head reveal">
         <div><div class="eyebrow">Client Word</div><h2>What It's Like<br>to Build With Us</h2></div>
@@ -734,7 +765,7 @@
   </section>
 
   <!-- ============ CTA / CONTACT ============ -->
-  <section class="cta-section" id="contact">
+  <section class="cta-section" id="contact" data-theme="dark">
     <div class="wrap">
       <div class="cta-copy reveal">
         <div class="eyebrow on-navy">Start a Project</div>
@@ -782,7 +813,7 @@
 
 </main>
 
-<footer>
+<footer data-theme="dark">
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
@@ -831,11 +862,65 @@
   }, { threshold: 0.12 });
   revealEls.forEach(el=>io.observe(el));
 
-  // header background on scroll
+  // ============================================================
+  // ADAPTIVE HEADER — reads what's behind it, not just scroll position.
+  // Every <section>/<footer> is tagged data-theme="dark|light" to match
+  // its actual background color. As the page scrolls, we work out which
+  // one currently sits behind the fixed header and switch:
+  //   - header.is-scrolled  → frosted glass panel on/off (off at the very top)
+  //   - header.theme-dark / theme-light → drives --header-fg (text/icon
+  //     color) via CSS, and which logo PNG is crossfaded to visible
+  // ============================================================
   const header = document.getElementById('siteHeader');
-  const onScroll = ()=>{ header.classList.toggle('is-scrolled', window.scrollY > 60); };
-  window.addEventListener('scroll', onScroll);
-  onScroll();
+  const logoOnDark = document.querySelector('.logo-for-dark');
+  const logoOnLight = document.querySelector('.logo-for-light');
+  const themedEls = Array.from(document.querySelectorAll('[data-theme]'));
+
+  let sectionMap = [];
+  let currentTheme = 'dark';
+  let ticking = false;
+
+  function measureSections(){
+    sectionMap = themedEls.map(el => ({
+      top: el.getBoundingClientRect().top + window.scrollY,
+      theme: el.dataset.theme
+    })).sort((a,b) => a.top - b.top);
+  }
+
+  function themeAt(y){
+    let theme = sectionMap.length ? sectionMap[0].theme : 'dark';
+    for(const s of sectionMap){ if(y >= s.top) theme = s.theme; else break; }
+    return theme;
+  }
+
+  function applyTheme(theme){
+    if(theme === currentTheme) return;
+    currentTheme = theme;
+    header.classList.toggle('theme-light', theme === 'light');
+    header.classList.toggle('theme-dark', theme === 'dark');
+    logoOnDark.classList.toggle('is-active', theme === 'dark');
+    logoOnLight.classList.toggle('is-active', theme === 'light');
+  }
+
+  function updateHeader(){
+    const headerHeight = header.offsetHeight || 74;
+    // Probe the point just below the header's vertical center — the
+    // background color a viewer actually perceives behind the nav bar.
+    const probeY = window.scrollY + headerHeight * 0.6;
+    header.classList.toggle('is-scrolled', window.scrollY > 60);
+    applyTheme(themeAt(probeY));
+    ticking = false;
+  }
+
+  function onScroll(){
+    if(!ticking){ requestAnimationFrame(updateHeader); ticking = true; }
+  }
+
+  measureSections();
+  updateHeader();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', ()=>{ measureSections(); updateHeader(); });
+  window.addEventListener('load', ()=>{ measureSections(); updateHeader(); });
 
   // active nav link highlighting
   const sections = ['top','services','process','projects','craft','contact'].map(id=>document.getElementById(id));
