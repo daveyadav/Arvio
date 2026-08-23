@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arvio Builders — We Build What Lasts</title>
 <meta name="description" content="Arvio Builders is a residential and commercial construction company in Nepal. From first survey to final handover, we build what lasts.">
+<!-- ============================================================
+     FAVICON
+     Uses the same logo file as the header/footer. To use a
+     different image just for the browser tab icon, replace the
+     href below with that file's path (ideally a square .png or
+     .ico, e.g. "favicon.png").
+     ============================================================ -->
+<link rel="icon" type="image/png" href="Black and White Illustrated Floral Design Logo.png">
+<link rel="apple-touch-icon" href="Black and White Illustrated Floral Design Logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Newsreader:ital,wght@1,400;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
@@ -257,8 +266,8 @@
 
   /* ================= PROJECTS ================= */
   .projects{ background:var(--paper); }
-  .project-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-  .project-card{ position:relative; overflow:hidden; border-radius:var(--radius); background:var(--navy); height:360px; transition:box-shadow .4s ease, transform .4s ease; }
+  .project-grid{ display:grid; grid-template-columns:repeat(6,1fr); grid-template-rows:repeat(3,340px); gap:20px; }
+  .project-card{ position:relative; overflow:hidden; border-radius:var(--radius); background:var(--navy); transition:box-shadow .4s ease, transform .4s ease; }
   .project-card:hover{ box-shadow:var(--shadow); transform:translateY(-4px); }
   .project-card img{ width:100%; height:100%; object-fit:cover; filter:saturate(0.85); transition:transform .8s cubic-bezier(.2,.7,.2,1), filter .5s ease; }
   .project-card:hover img{ transform:scale(1.06); filter:saturate(1.05); }
@@ -267,6 +276,8 @@
   .project-card .info .p-tag{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue-light); }
   .project-card .info h4{ font-size:18.5px; margin-top:8px; text-transform:none; font-weight:700; }
   .project-card .info .meta{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#9FA6B5; margin-top:6px; }
+  .p1{ grid-column:span 3; grid-row:span 2; } .p2{ grid-column:span 3; grid-row:span 1; }
+  .p3{ grid-column:span 2; grid-row:span 1; } .p4{ grid-column:span 1; grid-row:span 1; }
 
   /* ================= CRAFT ================= */
   .craft{ background:var(--paper-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
@@ -361,8 +372,8 @@
     .process-item .step-num{ font-size:24px; }
     .process-item p{ grid-column:2/3; margin-top:6px; }
     .service-grid{ grid-template-columns:repeat(2,1fr); }
-    .project-grid{ grid-template-columns:repeat(2,1fr); }
-    .project-card{ height:260px; }
+    .project-grid{ grid-template-columns:repeat(2,1fr); grid-auto-rows:240px; grid-template-rows:none; }
+    .p1,.p2,.p3,.p4{ grid-column:span 1; grid-row:span 1; }
     .craft .wrap{ grid-template-columns:1fr; }
     .craft-img img, .craft-img video{ height:320px; }
     .t-grid{ grid-template-columns:1fr; }
@@ -379,8 +390,7 @@
     .scroll-cue{ margin-top:40px; }
     .sec-head{ flex-direction:column; align-items:flex-start; gap:12px; }
     .service-grid{ grid-template-columns:1fr; }
-    .project-grid{ grid-template-columns:1fr; }
-    .project-card{ height:220px; }
+    .project-grid{ grid-template-columns:1fr; grid-auto-rows:220px; }
     .foot-top{ grid-template-columns:1fr; }
     .philosophy, .cta-section{ padding:80px 0; }
     .hero-cta-row{ gap:16px; }
@@ -404,10 +414,11 @@
                                       Drop your video file into the Images
                                       folder and point the <video> src at
                                       it, e.g. src="Images/craft-video.mp4"
-       3. Projects — six real house photos, already wired to your
-          Images/ folder: house_kathmandu_1.jpg, house_kathmandu_2.jpg,
-          house_pokhara_1.jpg, house_pokhara_2.jpg, house_chitwan_1.jpg,
-          house_chitwan_2.jpg → search "project-card" below
+       3. Projects — six real house photos in the original masonry
+          layout (one large feature tile + five varied tiles), already
+          wired to your Images/ folder: house_kathmandu_1.jpg,
+          house_kathmandu_2.jpg, house_pokhara_1.jpg, house_pokhara_2.jpg,
+          house_chitwan_1.jpg, house_chitwan_2.jpg → search "project-card p" below
        4. Services — photos          → search "service-card" below (one per card)
        5. Testimonials — reviewer photos → now use the same house photos
           instead of stock portraits → search "avatar" below
@@ -619,32 +630,32 @@
         <p>A small sample of homes we've built for clients across Nepal.</p>
       </div>
       <div class="project-grid reveal">
-        <div class="project-card">
+        <div class="project-card p1">
           <img src="Images/house_kathmandu_1.jpg" alt="Modern residential home in Kathmandu built by Arvio Builders">
           <div class="overlay"></div>
-          <div class="info"><div class="p-tag">Residential</div><h4>Kathmandu Residence I</h4><div class="meta">Kathmandu — 2024</div></div>
+          <div class="info"><div class="p-tag">Featured</div><h4>Kathmandu Residence I</h4><div class="meta">Kathmandu — 2024</div></div>
         </div>
-        <div class="project-card">
-          <img src="Images/house_kathmandu_2.jpg" alt="Modern residential home in Kathmandu with wooden facade">
-          <div class="overlay"></div>
-          <div class="info"><div class="p-tag">Residential</div><h4>Kathmandu Residence II</h4><div class="meta">Kathmandu — 2023</div></div>
-        </div>
-        <div class="project-card">
+        <div class="project-card p2">
           <img src="Images/house_pokhara_1.jpg" alt="Contemporary residence in Pokhara at dusk">
           <div class="overlay"></div>
           <div class="info"><div class="p-tag">Residential</div><h4>Pokhara Residence I</h4><div class="meta">Pokhara — 2023</div></div>
         </div>
-        <div class="project-card">
-          <img src="Images/house_pokhara_2.jpg" alt="Residence in Pokhara surrounded by hills">
-          <div class="overlay"></div>
-          <div class="info"><div class="p-tag">Residential</div><h4>Pokhara Residence II</h4><div class="meta">Pokhara — 2022</div></div>
-        </div>
-        <div class="project-card">
+        <div class="project-card p3">
           <img src="Images/house_chitwan_1.jpg" alt="Classical style residence in Chitwan">
           <div class="overlay"></div>
           <div class="info"><div class="p-tag">Residential</div><h4>Chitwan Residence I</h4><div class="meta">Chitwan — 2022</div></div>
         </div>
-        <div class="project-card">
+        <div class="project-card p4">
+          <img src="Images/house_kathmandu_2.jpg" alt="Modern residential home in Kathmandu with wooden facade">
+          <div class="overlay"></div>
+          <div class="info"><div class="p-tag">Residential</div><h4>Kathmandu Residence II</h4><div class="meta">Kathmandu — 2023</div></div>
+        </div>
+        <div class="project-card p2">
+          <img src="Images/house_pokhara_2.jpg" alt="Residence in Pokhara surrounded by hills">
+          <div class="overlay"></div>
+          <div class="info"><div class="p-tag">Residential</div><h4>Pokhara Residence II</h4><div class="meta">Pokhara — 2022</div></div>
+        </div>
+        <div class="project-card p2">
           <img src="Images/house_chitwan_2.jpg" alt="White residence with gated entrance in Chitwan">
           <div class="overlay"></div>
           <div class="info"><div class="p-tag">Residential</div><h4>Chitwan Residence II</h4><div class="meta">Chitwan — 2021</div></div>
