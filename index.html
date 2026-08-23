@@ -257,8 +257,8 @@
 
   /* ================= PROJECTS ================= */
   .projects{ background:var(--paper); }
-  .project-grid{ display:grid; grid-template-columns:repeat(6,1fr); grid-template-rows:repeat(2,340px); gap:20px; }
-  .project-card{ position:relative; overflow:hidden; border-radius:var(--radius); background:var(--navy); transition:box-shadow .4s ease, transform .4s ease; }
+  .project-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .project-card{ position:relative; overflow:hidden; border-radius:var(--radius); background:var(--navy); height:360px; transition:box-shadow .4s ease, transform .4s ease; }
   .project-card:hover{ box-shadow:var(--shadow); transform:translateY(-4px); }
   .project-card img{ width:100%; height:100%; object-fit:cover; filter:saturate(0.85); transition:transform .8s cubic-bezier(.2,.7,.2,1), filter .5s ease; }
   .project-card:hover img{ transform:scale(1.06); filter:saturate(1.05); }
@@ -267,14 +267,12 @@
   .project-card .info .p-tag{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue-light); }
   .project-card .info h4{ font-size:18.5px; margin-top:8px; text-transform:none; font-weight:700; }
   .project-card .info .meta{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#9FA6B5; margin-top:6px; }
-  .p1{ grid-column:span 3; grid-row:span 2; } .p2{ grid-column:span 3; grid-row:span 1; }
-  .p3{ grid-column:span 2; grid-row:span 1; } .p4{ grid-column:span 1; grid-row:span 1; }
 
   /* ================= CRAFT ================= */
   .craft{ background:var(--paper-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
   .craft .wrap{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:66px; align-items:center; }
-  .craft-img{ position:relative; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); }
-  .craft-img img{ width:100%; height:500px; object-fit:cover; }
+  .craft-img{ position:relative; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); background:var(--navy); }
+  .craft-img img, .craft-img video{ width:100%; height:500px; object-fit:cover; display:block; }
   .craft-img .frame-tag{
     position:absolute; bottom:14px; left:14px; font-family:'JetBrains Mono',monospace; font-size:10px;
     letter-spacing:0.08em; text-transform:uppercase; color:#fff; background:rgba(12,18,32,0.65); padding:6px 11px; border-radius:2px;
@@ -296,8 +294,9 @@
   .testimonial .quote-mark{ font-family:'Newsreader',serif; font-style:italic; font-size:40px; color:var(--blue-soft); line-height:0.6; display:block; margin-bottom:6px; }
   .testimonial p.serif{ font-size:18px; line-height:1.5; color:var(--ink); }
   .testimonial .who-row{ display:flex; align-items:center; gap:12px; margin-top:22px; }
-  .testimonial .avatar{ width:42px; height:42px; border-radius:50%; object-fit:cover; flex-shrink:0; border:1px solid var(--line); }
+  .testimonial .avatar{ width:56px; height:56px; border-radius:8px; object-fit:cover; flex-shrink:0; border:1px solid var(--line); }
   .testimonial .who{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; color:var(--muted); }
+  .testimonial .who strong{ color:var(--ink); font-weight:700; }
 
   /* ================= CTA / CONTACT ================= */
   .cta-section{ background:var(--navy); color:var(--paper); padding:120px 0; }
@@ -362,10 +361,10 @@
     .process-item .step-num{ font-size:24px; }
     .process-item p{ grid-column:2/3; margin-top:6px; }
     .service-grid{ grid-template-columns:repeat(2,1fr); }
-    .project-grid{ grid-template-columns:repeat(2,1fr); grid-auto-rows:240px; }
-    .p1,.p2,.p3,.p4{ grid-column:span 1; grid-row:span 1; }
+    .project-grid{ grid-template-columns:repeat(2,1fr); }
+    .project-card{ height:260px; }
     .craft .wrap{ grid-template-columns:1fr; }
-    .craft-img img{ height:320px; }
+    .craft-img img, .craft-img video{ height:320px; }
     .t-grid{ grid-template-columns:1fr; }
     .cta-section .wrap{ grid-template-columns:1fr; gap:48px; }
     .foot-top{ grid-template-columns:1fr 1fr; row-gap:32px; }
@@ -380,7 +379,8 @@
     .scroll-cue{ margin-top:40px; }
     .sec-head{ flex-direction:column; align-items:flex-start; gap:12px; }
     .service-grid{ grid-template-columns:1fr; }
-    .project-grid{ grid-template-columns:1fr; grid-auto-rows:220px; }
+    .project-grid{ grid-template-columns:1fr; }
+    .project-card{ height:220px; }
     .foot-top{ grid-template-columns:1fr; }
     .philosophy, .cta-section{ padding:80px 0; }
     .hero-cta-row{ gap:16px; }
@@ -400,15 +400,18 @@
      preview and will look broken or blurry when used full-size.
 
        1. Hero background          → --hero-bg-image (in :root, top of <style>)
-       2. Craft section photo      → search "craft-img reveal" below
-       3. Projects — Aster Commons → search "Angular concrete commercial building"
-       4. Projects — Meridian      → search "Illuminated concrete house at night"
-       5. Projects — Site 14       → search "Building under construction with crane"
-       6. Projects — Crestline     → search "White and brown concrete residence"
-       7. Projects — Oakview       → search "Two storey residence with balconies"
-       8. Services — photos        → search "service-card" below (one per card)
-       9. Testimonials — avatars   → search "avatar" below (one per testimonial)
-      10. Logo                     → search "logo-img" below (header + footer)
+       2. Craft section VIDEO      → search "craft-img reveal" below.
+                                      Drop your video file into the Images
+                                      folder and point the <video> src at
+                                      it, e.g. src="Images/craft-video.mp4"
+       3. Projects — six real house photos, already wired to your
+          Images/ folder: house_kathmandu_1.jpg, house_kathmandu_2.jpg,
+          house_pokhara_1.jpg, house_pokhara_2.jpg, house_chitwan_1.jpg,
+          house_chitwan_2.jpg → search "project-card" below
+       4. Services — photos          → search "service-card" below (one per card)
+       5. Testimonials — reviewer photos → now use the same house photos
+          instead of stock portraits → search "avatar" below
+       6. Logo                     → search "logo-img" below (header + footer)
      ============================================================ -->
 
 <header id="siteHeader">
@@ -613,33 +616,38 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <div><div class="eyebrow">Selected Work</div><h2>Projects</h2></div>
-        <p>A small sample of what's currently standing, and one that's still going up.</p>
+        <p>A small sample of homes we've built for clients across Nepal.</p>
       </div>
       <div class="project-grid reveal">
-        <div class="project-card p1">
-          <img src="https://images.unsplash.com/photo-1763850407750-4671769329c1?w=1200&q=80&auto=format&fit=crop" alt="Angular concrete commercial building">
+        <div class="project-card">
+          <img src="Images/house_kathmandu_1.jpg" alt="Modern residential home in Kathmandu built by Arvio Builders">
           <div class="overlay"></div>
-          <div class="info"><div class="p-tag">Commercial</div><h4>Aster Commons</h4><div class="meta">Kathmandu — 2024 — 48,000 SQ FT</div></div>
+          <div class="info"><div class="p-tag">Residential</div><h4>Kathmandu Residence I</h4><div class="meta">Kathmandu — 2024</div></div>
         </div>
-        <div class="project-card p2">
-          <img src="https://images.unsplash.com/photo-1505843513577-22bb7d21e455?w=1200&q=80&auto=format&fit=crop" alt="Illuminated concrete house at night">
+        <div class="project-card">
+          <img src="Images/house_kathmandu_2.jpg" alt="Modern residential home in Kathmandu with wooden facade">
           <div class="overlay"></div>
-          <div class="info"><div class="p-tag">Residential</div><h4>The Meridian Residence</h4><div class="meta">Lalitpur — 2024 — 6,200 SQ FT</div></div>
+          <div class="info"><div class="p-tag">Residential</div><h4>Kathmandu Residence II</h4><div class="meta">Kathmandu — 2023</div></div>
         </div>
-        <div class="project-card p3">
-          <img src="https://images.unsplash.com/photo-1609867271967-a82f85c48531?w=1200&q=80&auto=format&fit=crop" alt="Building under construction with crane">
+        <div class="project-card">
+          <img src="Images/house_pokhara_1.jpg" alt="Contemporary residence in Pokhara at dusk">
           <div class="overlay"></div>
-          <div class="info"><div class="p-tag">In Progress</div><h4>Site 14</h4><div class="meta">Bhaktapur — Est. Completion 2027</div></div>
+          <div class="info"><div class="p-tag">Residential</div><h4>Pokhara Residence I</h4><div class="meta">Pokhara — 2023</div></div>
         </div>
-        <div class="project-card p3">
-          <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80&auto=format&fit=crop" alt="White and brown concrete residence">
+        <div class="project-card">
+          <img src="Images/house_pokhara_2.jpg" alt="Residence in Pokhara surrounded by hills">
           <div class="overlay"></div>
-          <div class="info"><div class="p-tag">Residential</div><h4>Crestline House</h4><div class="meta">Pokhara — 2023</div></div>
+          <div class="info"><div class="p-tag">Residential</div><h4>Pokhara Residence II</h4><div class="meta">Pokhara — 2022</div></div>
         </div>
-        <div class="project-card p4">
-          <img src="https://images.unsplash.com/photo-1678575326996-a1bf09b86158?w=900&q=80&auto=format&fit=crop" alt="Two storey residence with balconies">
+        <div class="project-card">
+          <img src="Images/house_chitwan_1.jpg" alt="Classical style residence in Chitwan">
           <div class="overlay"></div>
-          <div class="info"><div class="p-tag">Residential</div><h4>Oakview Terrace</h4><div class="meta">Kathmandu — 2022</div></div>
+          <div class="info"><div class="p-tag">Residential</div><h4>Chitwan Residence I</h4><div class="meta">Chitwan — 2022</div></div>
+        </div>
+        <div class="project-card">
+          <img src="Images/house_chitwan_2.jpg" alt="White residence with gated entrance in Chitwan">
+          <div class="overlay"></div>
+          <div class="info"><div class="p-tag">Residential</div><h4>Chitwan Residence II</h4><div class="meta">Chitwan — 2021</div></div>
         </div>
       </div>
     </div>
@@ -649,8 +657,12 @@
   <section class="craft" id="craft">
     <div class="wrap">
       <div class="craft-img reveal">
-        <img src="https://images.unsplash.com/photo-1774931363306-5a896cd4dd02?w=1000&q=80&auto=format&fit=crop" alt="Construction crew pouring concrete on site">
-        <span class="frame-tag">Foundation pour — Site 14</span>
+        <!-- Upload your video into the Images folder and point src at it.
+             Example: Images/craft-video.mp4 -->
+        <video src="Images/craft-video.mp4" controls muted playsinline poster="Images/house_kathmandu_1.jpg">
+          Your browser does not support embedded video.
+        </video>
+        <span class="frame-tag">On site with Arvio Builders</span>
       </div>
       <div class="craft-copy reveal">
         <div class="eyebrow">Materials &amp; Craft</div>
@@ -677,24 +689,24 @@
           <span class="quote-mark">"</span>
           <p class="serif">They gave us a real timeline in week one, and they hit it. No surprise change orders, no vanishing site manager.</p>
           <div class="who-row">
-            <img class="avatar" src="https://images.unsplash.com/photo-1651684215020-f7a5b6610f23?w=200&q=80&auto=format&fit=crop" alt="Portrait of the Meridian Residence homeowner">
-            <div class="who">Homeowner — The Meridian Residence, Lalitpur</div>
+            <img class="avatar" src="Images/house_kathmandu_1.jpg" alt="The Meridian Residence, Lalitpur">
+            <div class="who"><strong>Sunita Rai</strong> — Homeowner, The Meridian Residence, Lalitpur</div>
           </div>
         </div>
         <div class="testimonial reveal">
           <span class="quote-mark">"</span>
           <p class="serif">Arvio's engineers caught a soil issue our first contractor missed entirely. That alone paid for the survey ten times over.</p>
           <div class="who-row">
-            <img class="avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80&auto=format&fit=crop" alt="Portrait of the Aster Commons developer">
-            <div class="who">Developer — Aster Commons, Kathmandu</div>
+            <img class="avatar" src="Images/house_kathmandu_2.jpg" alt="Aster Commons, Kathmandu">
+            <div class="who"><strong>Bikash Shrestha</strong> — Developer, Aster Commons, Kathmandu</div>
           </div>
         </div>
         <div class="testimonial reveal">
           <span class="quote-mark">"</span>
           <p class="serif">Two years in, the two-year warranty still means something — they came back for a punch-list item without being chased.</p>
           <div class="who-row">
-            <img class="avatar" src="https://images.unsplash.com/photo-1583264277168-58ceba4b84e7?w=200&q=80&auto=format&fit=crop" alt="Portrait of the Crestline House homeowner">
-            <div class="who">Homeowner — Crestline House, Pokhara</div>
+            <img class="avatar" src="Images/house_pokhara_1.jpg" alt="Crestline House, Pokhara">
+            <div class="who"><strong>Anita Gurung</strong> — Homeowner, Crestline House, Pokhara</div>
           </div>
         </div>
       </div>
@@ -715,7 +727,7 @@
         </div>
       </div>
 
-      <form class="project-form reveal" id="projectForm"
+      <form class="project-form" id="projectForm"
             action="https://script.google.com/macros/s/AKfycbzoHMWH-I5O6m9ufI8aYR2CQyXYMAkUjn2E-e4rw-HTK0H-NknXz3TfwwiDKXXzpT1B9g/exec"
             method="POST" target="hidden_iframe">
         <div class="form-row">
